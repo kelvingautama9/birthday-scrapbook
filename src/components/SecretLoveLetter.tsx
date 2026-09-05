@@ -10,21 +10,17 @@ export const SecretLoveLetter: React.FC = () => {
   const typingTimerRef = useRef<number | null>(null);
 
   // =========================================================================
-  // ISI SURAT CINTA (Kelvin dapat mengganti isi pesan di sini)
+  // ISI SURAT (Kelvin)
   // =========================================================================
-  const fullLetter = `Untuk Shareen, cintaku yang paling berharga...
+  const fullLetter = `Dear Shareen,
 
-Sejak hari pertama kita melangkah bersama pada 31 Januari 2026, duniaku dipenuhi rasa syukur yang tak pernah habis. Setiap senyummu adalah penghangat di hari-hariku yang lelah, dan setiap canda tawamu adalah alasan hatiku selalu merasa bahagia.
+Happy Birthday sayang ❤️ di umur kamu yang udah masuk 24 tahun ini, semoga impian kamu dari yang terkecil sampai yang terbesar dapat segera tercapai, semakin cantik, diberkahi kesehatan, rezeki yang melimpah, dan kelak bisa bahagiain bahkan jadi kebanggaan mami, papi, & cici kamu.
 
-Di hari ulang tahunmu yang spesial ini, pada 9 September 2026, aku ingin mengingatkanmu betapa istimewanya dirimu bagiku. Terima kasih sudah menjadi sosok yang selalu sabar, penuh perhatian, dan mencintaiku apa adanya.
+Aku janji bakal terus berusaha buat bikin kamu selalu tersenyum, jadi tempat kamu bersandar ketika lelah atau butuh bantuan, dan bisa selalu hadir buat kamu melewati hari-hari ke depan.
 
-Aku berjanji akan terus berusaha membuatmu tersenyum, menjadi tempatmu bersandar saat lelah, dan menggenggam tanganmu melewati hari-hari ke depan.
+Thank you so much karena kamu udah selalu perhatian, baik, sabar hadapin aku yang terkadang ngeselin dan kurang peka ini.
+Kehadiran kamu bawa begitu banyak kebahagiaan dan kebanggaan di hidup aku yang sebelumnya biasa biasa aja. I Love You so much sayang. ❤️
 
-Semoga di usiamu yang baru ini, setiap impianmu dipermudah, kesehatan dan kebahagiaan selalu memelukmu, dan semoga cinta kita terus bertumbuh semakin indah.
-
-Selamat ulang tahun, kesayanganku Shareen! Aku sayang banget sama kamu, hari ini, esok, dan selamanya. ❤️✨
-
-Dengan segenap cintaku,
 Kelvin`;
 
   // Handle open envelope
@@ -110,17 +106,14 @@ Kelvin`;
   return (
     <section id="secret-love-letter-section" className="py-16 sm:py-24 px-4 sm:px-6 max-w-4xl mx-auto">
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-12">
+      <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#FADADD] text-[#800000] text-xs font-bold uppercase tracking-widest shadow-xs mb-3">
           <Mail className="w-3.5 h-3.5" />
           <span>Special Secret Message</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-['Dancing_Script'] font-bold text-[#800000] tracking-tight">
-          Surat Cinta Rahasia
+          Surat Rahasia
         </h2>
-        <p className="mt-3 text-xs sm:text-sm uppercase tracking-widest font-bold text-[#141414]/70 font-sans">
-          Sebuah pesan yang kutulis dengan penuh ketulusan dari lubuk hatiku yang terdalam.
-        </p>
       </div>
 
       {/* Interactive Envelope Container */}
@@ -160,7 +153,7 @@ Kelvin`;
                 className="mt-5 px-6 py-2.5 rounded-full bg-[#800000] hover:bg-[#660000] text-white text-xs font-bold uppercase tracking-wider shadow-md flex items-center gap-2 group-hover:shadow-lg transition-all"
               >
                 <Sparkles className="w-4 h-4 text-amber-300" />
-                <span>Buka Surat Cinta</span>
+                <span>Buka Suratnya disini</span>
               </button>
               <p className="text-[11px] text-[#800000]/70 mt-2 font-bold uppercase tracking-wider">
                 (Sentuh atau klik amplop untuk membuka segel)
@@ -183,7 +176,7 @@ Kelvin`;
             <div className="flex items-center justify-between border-b border-[#800000]/20 pb-3 mb-6">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#800000]">
                 <Heart className="w-4 h-4 fill-[#800000]" />
-                <span className="font-sans">Surat Cinta Untuk Shareen</span>
+                <span className="font-sans">Surat Untuk Shareen</span>
               </div>
 
               <div className="flex items-center gap-2">
@@ -223,7 +216,7 @@ Kelvin`;
             <div className="mt-8 pt-4 border-t border-[#800000]/20 flex items-center justify-between">
               <div className="flex items-center gap-2 text-stone-600 text-xs font-bold uppercase tracking-wider">
                 <Sparkles className="w-4 h-4 text-[#800000]" />
-                <span>Ditulis dari hati untuk Shareen • 2026</span>
+                <span>FOR SHAREEN - 2026</span>
               </div>
 
               <div className="w-12 h-12 rounded-full border-2 border-dashed border-[#800000]/50 flex items-center justify-center text-[10px] text-[#800000] font-bold rotate-12 uppercase tracking-tighter">

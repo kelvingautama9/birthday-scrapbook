@@ -74,10 +74,10 @@ export const PlayfulPrankSection: React.FC = () => {
       <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#FADADD] text-[#800000] text-xs font-bold tracking-widest uppercase mb-3 border border-[#800000]/20 shadow-xs">
           <Laugh className="w-3.5 h-3.5 text-[#800000]" />
-          <span>Section Khusus Iseng & Jahil</span>
+          <span>Section Wajib di Jawab</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-['Dancing_Script'] font-bold text-[#800000] tracking-tight">
-          Pertanyaan Kejujuran Hati
+          Pertanyaan Kejujuran
         </h2>
         <p className="mt-3 text-xs sm:text-sm uppercase tracking-widest font-bold text-[#141414]/70 font-sans">
           Jawab dengan jujur yaa, jangan ada yang disembunyikan! 😜
@@ -100,7 +100,7 @@ export const PlayfulPrankSection: React.FC = () => {
 
             {/* Pertanyaan yang diajukan */}
             <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-extrabold text-[#141414] max-w-xl mx-auto leading-snug">
-              "Jujur dari lubuk hati terdalam, kamu sayang banget kan sama Kelvin dan mau terus barengan selamanya? 🥺❤️"
+              "Jujur dari lubuk hati terdalam, kamu sayang banget kan sama aku sm mau terus barengan selamanya 😘"
             </h3>
             <p className="text-xs uppercase tracking-widest font-bold text-stone-500 font-sans mt-2">
               (Pilih salah satu jawaban di bawah ini dengan sungguh-sungguh)
@@ -165,11 +165,11 @@ export const PlayfulPrankSection: React.FC = () => {
             </span>
 
             <h3 className="text-2xl sm:text-4xl font-serif font-extrabold text-[#141414] mt-3">
-              Yeeey! Kelvin Tahu Pasti Kamu Sayang! 🥰
+              Yeeey! Aku tauu Pasti Kamu Sayangggg ! 🥰
             </h3>
 
             <p className="font-['Dancing_Script'] text-2xl sm:text-3xl text-[#800000] mt-3 font-bold max-w-xl mx-auto leading-relaxed">
-              "Gak ada pilihan lain selain saling menyayangi selamanya yaa sayang. Kelvin janji bakal selalu jagain dan bikin Shareen bahagia terus! ❤️✨"
+              "Gak ada pilihan lain selain saling menyayangi selamanya yaa sayang. Aku janji bakal selalu jagain dan bikin km bahagia terussss! ❤️✨"
             </p>
 
             <button
@@ -181,7 +181,7 @@ export const PlayfulPrankSection: React.FC = () => {
               }}
               className="mt-6 px-5 py-2 text-xs uppercase tracking-wider font-bold text-stone-500 hover:text-[#800000] underline transition-colors cursor-pointer"
             >
-              Ulangi Pertanyaan Iseng
+              Ulangi Pertanyaan
             </button>
           </div>
         )}
