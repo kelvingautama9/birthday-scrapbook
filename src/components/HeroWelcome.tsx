@@ -126,10 +126,15 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                   alt="Shareen - My Favorite Person"
                   referrerPolicy="no-referrer"
                   onError={() => {
-                    // Fallback to alternative paths if needed
+                    // Fallback to alternative paths or GitHub raw repository
+                    const githubRaw = 'https://raw.githubusercontent.com/kelvingautama9/birthday-scrapbook/main/public';
                     if (photoSrc === '/shareen.png') {
+                      setPhotoSrc(`${githubRaw}/shareen.png`);
+                    } else if (photoSrc.includes('shareen.png')) {
                       setPhotoSrc('/image.png');
                     } else if (photoSrc === '/image.png') {
+                      setPhotoSrc(`${githubRaw}/image.png`);
+                    } else if (photoSrc.includes('image.png')) {
                       setPhotoSrc('/shareen.jpg');
                     }
                   }}

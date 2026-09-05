@@ -15,7 +15,9 @@ export const PolaroidGallery: React.FC = () => {
       id: 'p1',
       title: 'Senyuman Favoritku',
       date: 'Sweet Memories',
-      imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/gallery-1.jpg
+      imageUrl: '/gallery-1.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80',
       caption: 'Senyum tercantik yang selalu berhasil bikin hariku tenang.',
       tapeColor: 'pink',
       rotation: '-rotate-4',
@@ -25,7 +27,9 @@ export const PolaroidGallery: React.FC = () => {
       id: 'p2',
       title: 'Cafe Date Berdua',
       date: 'Weekend Date',
-      imageUrl: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/gallery-2.jpg
+      imageUrl: '/gallery-2.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=700&q=80',
       caption: 'Waktu berhenti setiap kali kita duduk berhadapan sambil ngobrol.',
       tapeColor: 'beige',
       rotation: 'rotate-3',
@@ -35,7 +39,9 @@ export const PolaroidGallery: React.FC = () => {
       id: 'p3',
       title: 'Tatap Matamu',
       date: 'Forever With You',
-      imageUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/gallery-3.jpg
+      imageUrl: '/gallery-3.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=700&q=80',
       caption: 'Di matamu, aku menemukan rumah tempat hatiku ingin selalu pulang.',
       tapeColor: 'maroon',
       rotation: '-rotate-2',
@@ -45,7 +51,9 @@ export const PolaroidGallery: React.FC = () => {
       id: 'p4',
       title: 'Silly & Happy Moments',
       date: 'Random Laughs',
-      imageUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/gallery-4.jpg
+      imageUrl: '/gallery-4.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80',
       caption: 'Tawa lepasmu adalah melodi paling indah yang pernah kudengar.',
       tapeColor: 'pink',
       rotation: 'rotate-4',
@@ -55,7 +63,9 @@ export const PolaroidGallery: React.FC = () => {
       id: 'p5',
       title: 'Sunset Jalan Berdua',
       date: 'Golden Hour',
-      imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/gallery-5.jpg
+      imageUrl: '/gallery-5.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
       caption: 'Sunset-nya indah, tapi tetap kalah indah dibanding pemandangan di sampingku.',
       tapeColor: 'beige',
       rotation: '-rotate-3',
@@ -65,7 +75,9 @@ export const PolaroidGallery: React.FC = () => {
       id: 'p6',
       title: 'Hari Spesial Shareen',
       date: '9 September 2026',
-      imageUrl: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/gallery-6.jpg
+      imageUrl: '/gallery-6.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=700&q=80',
       caption: 'Selamat ulang tahun bidadariku! Panjang umur dan bahagia selalu yaa.',
       tapeColor: 'maroon',
       rotation: 'rotate-2',
@@ -121,11 +133,21 @@ export const PolaroidGallery: React.FC = () => {
 
             {/* Polaroid Photo Box */}
             <div className="relative aspect-[4/4.5] overflow-hidden rounded-xl bg-stone-100 border border-stone-200 shadow-inner">
-              {/* <!-- Ganti link foto galeri polaroid di sini --> */}
+              {/* <!-- Ganti link foto galeri polaroid di sini atau upload ke public/gallery-X.jpg --> */}
               <img
                 src={item.imageUrl}
                 alt={item.title}
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const githubRawUrl = `https://raw.githubusercontent.com/kelvingautama9/birthday-scrapbook/main/public${item.imageUrl}`;
+                  if (!target.dataset.triedGithub && !target.src.includes('raw.githubusercontent.com')) {
+                    target.dataset.triedGithub = 'true';
+                    target.src = githubRawUrl;
+                  } else if (item.fallbackUrl && target.src !== item.fallbackUrl) {
+                    target.src = item.fallbackUrl;
+                  }
+                }}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
 
@@ -187,6 +209,16 @@ export const PolaroidGallery: React.FC = () => {
                 src={activeModalPhoto.imageUrl}
                 alt={activeModalPhoto.title}
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const githubRawUrl = `https://raw.githubusercontent.com/kelvingautama9/birthday-scrapbook/main/public${activeModalPhoto.imageUrl}`;
+                  if (!target.dataset.triedGithub && !target.src.includes('raw.githubusercontent.com')) {
+                    target.dataset.triedGithub = 'true';
+                    target.src = githubRawUrl;
+                  } else if (activeModalPhoto.fallbackUrl && target.src !== activeModalPhoto.fallbackUrl) {
+                    target.src = activeModalPhoto.fallbackUrl;
+                  }
+                }}
                 className="w-full h-full object-cover"
               />
             </div>

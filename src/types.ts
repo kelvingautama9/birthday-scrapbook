@@ -4,6 +4,7 @@ export interface Milestone {
   title: string;
   description: string;
   imageUrl: string;
+  fallbackUrl?: string;
   tag: string;
   rotation?: string;
   accentEmoji?: string;
@@ -14,6 +15,7 @@ export interface PolaroidItem {
   title: string;
   date: string;
   imageUrl: string;
+  fallbackUrl?: string;
   caption: string;
   tapeColor?: 'pink' | 'beige' | 'maroon';
   rotation: string; // e.g. "-rotate-3", "rotate-2"

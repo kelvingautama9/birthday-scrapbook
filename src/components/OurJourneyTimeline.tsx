@@ -14,8 +14,9 @@ export const OurJourneyTimeline: React.FC = () => {
       title: 'Pertama Kali Kenal ✨',
       // // Ganti narasi di sini:
       description: 'Pertama kita kenal lewat online dari Line Openchat, aku notice ada ciwik cantik yang pelihara tikus, namanya Shareen, Nama tikusnya : Miyo. Dari situ aku tertarik sama kamu, chatting pertama emang agak canggung. Tapi ternyata setelah kenalan, kamu asik buat di ajak ngobrol, biarpun agak jual mahal & susah di deketin.',
-      // <!-- Ganti link gambar di sini -->
-      imageUrl: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/timeline-1.jpg
+      imageUrl: '/timeline-1.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=700&q=80',
       tag: 'The Beginning',
       rotation: '-rotate-2',
       accentEmoji: '💬',
@@ -26,8 +27,9 @@ export const OurJourneyTimeline: React.FC = () => {
       title: 'First Date ☕',
       // // Ganti narasi di sini:
       description: 'Awalnya aku sempet ditolak buat first date sama kamu, aku pikir kamu gak mau sama aku, tapi ternyata setelah beberapa tahun kemudian kamu start glow up, akhirnya kamu mau buat aku ajak first date di CP. Awal ketemu di Boost, aku sempet kaget krn liat kamu yang versi asli, ternyata jauh lebih cakep, postur juga senyumnya kalem banget, HADOEH AKU MELELEH 🫠 Aku sempet terppikir, apa kamu masih mau buat lanjut next date sama aku ? hmm, tapi ternyata kita lanjut ehehehe',
-      // <!-- Ganti link gambar di sini -->
-      imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/timeline-2.jpg
+      imageUrl: '/timeline-2.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80',
       tag: 'Butterflies in Tummy',
       rotation: 'rotate-2',
       accentEmoji: '☕',
@@ -38,8 +40,9 @@ export const OurJourneyTimeline: React.FC = () => {
       title: 'Hari Resmi Jadian Kita 💍',
       // // Ganti narasi di sini:
       description: 'Singkat cerita, akhirnya Hari paling yang ditunggu-tunggu setelah sekian lamanya kita PDKT, pas kamu mengiyakan ajakan aku buat hilangin status HTS jadi Pacaran di Eskalator GI menjelang pulang 🤫😊 Aku harap, kita bakal terus lanjut ketahap selanjutnya yang jauh lebih serius lagi, bukan cuma sekedar pacaran aja.',
-      // <!-- Ganti link gambar di sini -->
-      imageUrl: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/timeline-3.jpg
+      imageUrl: '/timeline-3.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80',
       tag: 'Official Couple',
       rotation: '-rotate-1',
       accentEmoji: '❤️',
@@ -50,8 +53,9 @@ export const OurJourneyTimeline: React.FC = () => {
       title: 'Sweet Moment🚗',
       // // Ganti narasi di sini:
       description: "Dari jalan-jalan cari makan, baking, nonton bareng, bahkan deep talk sampai tengah malam. I'm so happy bisa jalanin kegiatan apapun sama kamu.",
-      // <!-- Ganti link gambar di sini -->
-      imageUrl: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/timeline-4.jpg
+      imageUrl: '/timeline-4.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80',
       tag: 'Our Memory',
       rotation: 'rotate-1',
       accentEmoji: '✨',
@@ -62,8 +66,9 @@ export const OurJourneyTimeline: React.FC = () => {
       title: 'Spesial Ulang Tahun My Princess',
       // // Ganti narasi di sini:
       description: 'Happy Birthday Shareen sayang, selamat bertambah usia & tetap dikasih kesehatan selalu. Semoga semua impian kamu terwujud, dan aku bisa selalu ada di samping km buat merayakannya.',
-      // <!-- Ganti link gambar di sini -->
-      imageUrl: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=700&q=80',
+      // File statis: public/timeline-5.jpg
+      imageUrl: '/timeline-5.jpg',
+      fallbackUrl: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=700&q=80',
       tag: 'Happy Birthday Shareen!',
       rotation: '-rotate-2',
       accentEmoji: '🎉',
@@ -120,11 +125,21 @@ export const OurJourneyTimeline: React.FC = () => {
 
                     {/* Image Box */}
                     <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-stone-100 border border-stone-200 mb-4 shadow-inner">
-                      {/* <!-- Ganti link gambar di sini --> */}
+                      {/* <!-- Ganti link gambar di sini atau upload ke public/timeline-X.jpg --> */}
                       <img
                         src={item.imageUrl}
                         alt={item.title}
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          const githubRawUrl = `https://raw.githubusercontent.com/kelvingautama9/birthday-scrapbook/main/public${item.imageUrl}`;
+                          if (!target.dataset.triedGithub && !target.src.includes('raw.githubusercontent.com')) {
+                            target.dataset.triedGithub = 'true';
+                            target.src = githubRawUrl;
+                          } else if (item.fallbackUrl && target.src !== item.fallbackUrl) {
+                            target.src = item.fallbackUrl;
+                          }
+                        }}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute top-2 right-2 bg-[#800000] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-xs">
