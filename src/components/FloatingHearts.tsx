@@ -28,13 +28,20 @@ export const FloatingHearts: React.FC<FloatingHeartsProps> = ({ density = 18 }) 
           className="absolute -bottom-10"
           style={{
             left: heart.left,
-            animation: `floatUp ${heart.duration}s linear infinite`,
+            animationName: 'floatUp',
+            animationDuration: `${heart.duration}s`,
+            animationTimingFunction: 'linear',
             animationDelay: `${heart.delay}s`,
+            animationIterationCount: 'infinite',
           }}
         >
           <div
             style={{
-              animation: `sway ${heart.swayDuration}s ease-in-out infinite alternate`,
+              animationName: 'sway',
+              animationDuration: `${heart.swayDuration}s`,
+              animationTimingFunction: 'ease-in-out',
+              animationIterationCount: 'infinite',
+              animationDirection: 'alternate',
               transform: `rotate(${heart.rotate}deg)`,
             }}
           >

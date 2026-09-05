@@ -93,10 +93,10 @@ export const PolaroidGallery: React.FC = () => {
           <span>Scattered Polaroid Scrapbook</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-['Dancing_Script'] font-bold text-[#800000] tracking-tight">
-          Galeri Polaroid Kenangan
+          our gallery
         </h2>
         <p className="mt-3 text-xs sm:text-sm uppercase tracking-widest font-bold text-[#141414]/70 font-sans">
-          Arahkan kursor atau sentuh foto untuk meluruskan dan melihat momen manis kita lebih dekat.
+          Arahkan kursor atau sentuh foto buat meluruskan dan liat momen kita lebih deket.
         </p>
       </div>
 

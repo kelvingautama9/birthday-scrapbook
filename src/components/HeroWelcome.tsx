@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Sparkles, Cake, Calendar as CalendarIcon, Volume2, VolumeX, Music } from 'lucide-react';
+import { Heart, Sparkles, Cake, Calendar as CalendarIcon, Volume2, VolumeX, Music, Utensils } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { triggerHaptic, playUnlockChime, romanticMusicBox } from '../utils/soundAndHaptics';
 
@@ -36,6 +36,19 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
       } catch {
         // Confetti fallback
       }
+    } else if (day === 13) {
+      triggerHaptic('success');
+      playUnlockChime();
+      try {
+        confetti({
+          particleCount: 60,
+          spread: 80,
+          origin: { y: 0.5 },
+          colors: ['#800000', '#FADADD', '#D4AF37', '#FFD700'],
+        });
+      } catch {
+        // Confetti fallback
+      }
     }
   };
 
@@ -57,7 +70,7 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
         </h1>
 
         <p className="mt-3 text-xs sm:text-sm uppercase tracking-widest font-bold text-[#141414]/70 max-w-2xl mx-auto leading-relaxed">
-          Setiap detik bersamamu adalah lembaran kenangan paling berharga. Web kecil ini kubuat dengan segenap cinta spesial untuk merayakan hari-hari indah kita.
+          Web kecil ini aku buat special buat rayain Ultah kamu & flashback story kita berdua sampai ke hubungan yang sekarang. Enjoy !👌😘
         </p>
 
         {/* Music Control Bar */}
@@ -75,12 +88,12 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
             {isMusicPlaying ? (
               <>
                 <Volume2 className="w-4 h-4 animate-pulse" />
-                <span>Musik Cinta Aktif 🎵</span>
+                <span>Play Music backsound disini 🎵</span>
               </>
             ) : (
               <>
                 <VolumeX className="w-4 h-4" />
-                <span>Putar Nada Romantis 🎶</span>
+                <span>Play Music backsound disini 🎶</span>
               </>
             )}
           </button>
@@ -138,7 +151,7 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
 
             {/* Cute Pin/Sticker Decoration */}
             <div className="absolute -bottom-3 -right-3 z-20 bg-[#FADADD] border border-[#800000]/20 text-[#800000] text-xs font-bold px-3.5 py-1.5 rounded-full shadow-md rotate-6 flex items-center gap-1 uppercase tracking-wider">
-              <span>✨ Kesayangan Kelvin</span>
+              <span>✨ My Little Princess🤫</span>
             </div>
           </div>
         </div>
@@ -173,11 +186,22 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                 </div>
               </div>
 
-              {/* Birthday Special Pill */}
-              <div className="px-3.5 py-1.5 bg-[#FADADD] text-[#800000] rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 border border-[#800000]/20 shadow-xs">
-                <Cake className="w-3.5 h-3.5 text-[#800000]" />
-                <span className="hidden sm:inline">Ulang Tahun:</span>
-                <span>9 Sep 🎂</span>
+              {/* Event Pills */}
+              <div className="flex items-center gap-2 flex-wrap justify-end">
+                <div 
+                  onClick={() => handleDateClick(9)}
+                  className="px-3 py-1.5 bg-[#FADADD] hover:bg-[#FADADD]/80 text-[#800000] rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 border border-[#800000]/20 shadow-xs cursor-pointer transition-transform hover:scale-105"
+                >
+                  <Cake className="w-3.5 h-3.5 text-[#800000]" />
+                  <span>9 Sep: Ultah 🎂</span>
+                </div>
+                <div 
+                  onClick={() => handleDateClick(13)}
+                  className="px-3 py-1.5 bg-[#800000] hover:bg-[#660000] text-white rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 shadow-xs cursor-pointer transition-transform hover:scale-105"
+                >
+                  <Utensils className="w-3.5 h-3.5 text-[#FADADD]" />
+                  <span>13 Sep: JW Marriott 🍷</span>
+                </div>
               </div>
             </div>
 
@@ -206,6 +230,7 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
               {Array.from({ length: daysInMonth }).map((_, i) => {
                 const dayNum = i + 1;
                 const isShareenBirthday = dayNum === 9;
+                const isDinnerDate = dayNum === 13;
                 const isSelected = selectedDay === dayNum;
 
                 // Hitung animasi melayang unik untuk setiap angka kalender
@@ -221,23 +246,36 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                     {/* Lingkaran angka dengan floating animation */}
                     <div
                       style={{
-                        animation: `calFloat ${floatDuration}s ease-in-out infinite alternate`,
+                        animationName: 'calFloat',
+                        animationDuration: `${floatDuration}s`,
+                        animationTimingFunction: 'ease-in-out',
                         animationDelay: `${floatDelay}s`,
+                        animationIterationCount: 'infinite',
+                        animationDirection: 'alternate',
                       }}
                       className={`w-9 h-9 sm:w-11 sm:h-11 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 relative font-bold ${
                         isShareenBirthday
                           ? 'bg-[#800000] text-white shadow-lg shadow-[#800000]/30 scale-110 ring-4 ring-[#FADADD] z-10'
+                          : isDinnerDate
+                          ? 'bg-[#800000] text-white shadow-md shadow-[#800000]/30 scale-105 ring-3 ring-[#FADADD] z-10'
                           : isSelected
                           ? 'bg-[#FADADD] text-[#800000] font-bold'
                           : 'bg-white hover:bg-[#FADADD]/40 text-stone-800 hover:text-[#800000] border border-stone-200/80 shadow-2xs'
                       }`}
                     >
-                      {/* Tanggal 9: Ditandai / dilingkari gambar hati */}
+                      {/* Tanggal 9: Ditandai hati | Tanggal 13: Dinner JW Marriott */}
                       {isShareenBirthday ? (
                         <>
                           <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-white drop-shadow-xs animate-bounce" />
                           <span className="text-[11px] sm:text-xs font-extrabold leading-none">
                             9
+                          </span>
+                        </>
+                      ) : isDinnerDate ? (
+                        <>
+                          <Utensils className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FADADD] drop-shadow-xs animate-pulse" />
+                          <span className="text-[11px] sm:text-xs font-extrabold leading-none text-white">
+                            13
                           </span>
                         </>
                       ) : (
@@ -246,10 +284,15 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                         </span>
                       )}
 
-                      {/* Sparkle badge khusus pada tanggal 9 */}
+                      {/* Sparkle badge khusus pada tanggal 9 & 13 */}
                       {isShareenBirthday && (
                         <span className="absolute -top-2 -right-2 text-[10px] animate-pulse">
                           ✨
+                        </span>
+                      )}
+                      {isDinnerDate && (
+                        <span className="absolute -top-2 -right-2 text-[10px] animate-pulse" title="Our Dinner at JW Marriott">
+                          🍷
                         </span>
                       )}
                     </div>
@@ -265,11 +308,15 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                 <p className="font-medium text-stone-700">
                   {selectedDay === 9 ? (
                     <span className="text-[#800000] font-bold flex items-center gap-1">
-                      🎂 9 September 2026: Hari Ulang Tahun Shareen tersayang!
+                      🎂 9 September 2026: Hari Ulang Tahun Princess Shareen !
+                    </span>
+                  ) : selectedDay === 13 ? (
+                    <span className="text-[#800000] font-bold flex items-center gap-1">
+                      🍷 13 September 2026: Our Dinner at JW Marriott ✨
                     </span>
                   ) : (
                     <span>
-                      Klik tanggal <strong>9</strong> untuk confetti kejutan ulang tahun! ✨
+                      Jadwal Spesial: <strong>9 Sep</strong> (Ultah Princess) & <strong>13 Sep</strong> (Our Dinner at JW Marriott) ✨
                     </span>
                   )}
                 </p>
@@ -290,6 +337,26 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                   className="px-4 py-1.5 rounded-full bg-[#800000] hover:bg-[#660000] text-white font-bold text-xs transition-all cursor-pointer shadow-xs active:scale-95 uppercase tracking-wider"
                 >
                   Rayakan Lagi! 🎉
+                </button>
+              )}
+
+              {selectedDay === 13 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    triggerHaptic('success');
+                    playUnlockChime();
+                    confetti({
+                      particleCount: 80,
+                      spread: 90,
+                      origin: { y: 0.6 },
+                      colors: ['#800000', '#FADADD', '#D4AF37', '#FFD700'],
+                    });
+                  }}
+                  className="px-4 py-1.5 rounded-full bg-[#800000] hover:bg-[#660000] text-white font-bold text-xs transition-all cursor-pointer shadow-xs active:scale-95 uppercase tracking-wider flex items-center gap-1"
+                >
+                  <Utensils className="w-3.5 h-3.5" />
+                  Dinner Date! 🍷
                 </button>
               )}
             </div>

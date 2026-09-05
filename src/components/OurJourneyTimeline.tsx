@@ -13,7 +13,7 @@ export const OurJourneyTimeline: React.FC = () => {
       date: 'Awal Pertemuan Kita',
       title: 'Pertama Kali Kenal ✨',
       // // Ganti narasi di sini:
-      description: 'Masih ingat obrolan pertama kita yang canggung tapi bikin senyum-senyum sendiri seharian? Dari sapaan sederhana itu, duniaku mulai terasa jauh lebih berwarna karena kehadiranmu.',
+      description: 'Pertama kita kenal lewat online dari Line Openchat, aku notice ada ciwik cantik yang pelihara tikus, namanya Shareen, Nama tikusnya : Miyo. Dari situ aku tertarik sama kamu, chatting pertama emang agak canggung. Tapi ternyata setelah kenalan, kamu asik buat di ajak ngobrol, biarpun agak jual mahal & susah di deketin.',
       // <!-- Ganti link gambar di sini -->
       imageUrl: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=700&q=80',
       tag: 'The Beginning',
@@ -23,9 +23,9 @@ export const OurJourneyTimeline: React.FC = () => {
     {
       id: '2',
       date: 'Kencan Pertama yang Berkesan',
-      title: 'First Date Manis Kita ☕',
+      title: 'First Date ☕',
       // // Ganti narasi di sini:
-      description: 'Duduk berdua di kedai kopi, mendengarkan tawamu yang renyah. Di hari itu, aku sadar kalau aku ingin menghabiskan ribuan sore berikutnya hanya untuk menatap matamu.',
+      description: 'Awalnya aku sempet ditolak buat first date sama kamu, aku pikir kamu gak mau sama aku, tapi ternyata setelah beberapa tahun kemudian kamu start glow up, akhirnya kamu mau buat aku ajak first date di CP. Awal ketemu di Boost, aku sempet kaget krn liat kamu yang versi asli, ternyata jauh lebih cakep, postur juga senyumnya kalem banget, HADOEH AKU MELELEH 🫠 Aku sempet terppikir, apa kamu masih mau buat lanjut next date sama aku ? hmm, tapi ternyata kita lanjut ehehehe',
       // <!-- Ganti link gambar di sini -->
       imageUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80',
       tag: 'Butterflies in Tummy',
@@ -37,7 +37,7 @@ export const OurJourneyTimeline: React.FC = () => {
       date: '31 Januari 2026',
       title: 'Hari Resmi Jadian Kita 💍',
       // // Ganti narasi di sini:
-      description: 'Hari paling membahagiakan ketika kamu mengiyakan ajakanku untuk melangkah bersama. Tanggal 31 Januari 2026 bukan sekadar angka, tapi awal dari cerita terbaik di hidupku.',
+      description: 'Singkat cerita, akhirnya Hari paling yang ditunggu-tunggu setelah sekian lamanya kita PDKT, pas kamu mengiyakan ajakan aku buat hilangin status HTS jadi Pacaran di Eskalator GI menjelang pulang 🤫😊 Aku harap, kita bakal terus lanjut ketahap selanjutnya yang jauh lebih serius lagi, bukan cuma sekedar pacaran aja.',
       // <!-- Ganti link gambar di sini -->
       imageUrl: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80',
       tag: 'Official Couple',
@@ -46,22 +46,22 @@ export const OurJourneyTimeline: React.FC = () => {
     },
     {
       id: '4',
-      date: 'Petualangan Bersama',
-      title: 'Momen-Momen Lucu & Hangat 🚗',
+      date: 'Our Memory',
+      title: 'Sweet Moment🚗',
       // // Ganti narasi di sini:
-      description: 'Dari jalan-jalan malam cari makan, tersesat di jalan sambil tertawa, sampai obrolan deep talk tengah malam. Bersamamu, tempat paling biasa pun jadi luar biasa.',
+      description: "Dari jalan-jalan cari makan, baking, nonton bareng, bahkan deep talk sampai tengah malam. I'm so happy bisa jalanin kegiatan apapun sama kamu.",
       // <!-- Ganti link gambar di sini -->
       imageUrl: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80',
-      tag: 'Adventures',
+      tag: 'Our Memory',
       rotation: 'rotate-1',
       accentEmoji: '✨',
     },
     {
       id: '5',
       date: '9 September 2026',
-      title: 'Spesial Ulang Tahun Shareen 🎂',
+      title: 'Spesial Ulang Tahun My Princess',
       // // Ganti narasi di sini:
-      description: 'Selamat bertambah usia wanitaku yang paling luar biasa! Semoga senyummu selalu merekah, semua impianmu terwujud, dan aku bisa selalu ada di sampingmu untuk merayakannya.',
+      description: 'Happy Birthday Shareen sayang, selamat bertambah usia & tetap dikasih kesehatan selalu. Semoga semua impian kamu terwujud, dan aku bisa selalu ada di samping km buat merayakannya.',
       // <!-- Ganti link gambar di sini -->
       imageUrl: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=700&q=80',
       tag: 'Happy Birthday Shareen!',
@@ -79,10 +79,10 @@ export const OurJourneyTimeline: React.FC = () => {
           <span>Our Love Journey</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-['Dancing_Script'] font-bold text-[#800000] tracking-tight">
-          Lembaran Jejak Cinta Kita
+          Love Story
         </h2>
         <p className="mt-3 text-xs sm:text-sm uppercase tracking-widest font-bold text-[#141414]/70 font-sans leading-relaxed">
-          Setiap langkah yang kita lalui bersama adalah memori berharga yang tersimpan abadi di dalam hati.
+          Ini gambaran memory cerita kita dari awal sampai di tahap sekarang yang kita jalanin
         </p>
       </div>
 

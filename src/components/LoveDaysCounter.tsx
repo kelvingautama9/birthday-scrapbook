@@ -45,10 +45,10 @@ export const LoveDaysCounter: React.FC = () => {
               <span>Together Since 31 Jan 2026</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-['Dancing_Script'] font-bold text-[#800000]">
-              Waktu Indah Bersamamu
+              Hari pertama kita Jadian
             </h3>
             <p className="text-xs uppercase tracking-widest font-bold text-[#141414]/70 font-sans mt-1">
-              Dan setiap detiknya selalu membuatku semakin jatuh cinta kepadamu.
+              semoga kita tetap langgeng sampai hari tua ya sayang
             </p>
           </div>
 

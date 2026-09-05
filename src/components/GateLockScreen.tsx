@@ -117,10 +117,10 @@ export const GateLockScreen: React.FC<GateLockScreenProps> = ({ onUnlock }) => {
         <div className="mb-6">
           <span className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-[#FADADD] text-[#800000] text-xs font-bold uppercase tracking-widest shadow-xs mb-3">
             <Heart className="w-3.5 h-3.5 fill-[#800000]" />
-            Locked: 31-01-2026 Access Required
+            LOCKED: ACCESS REQUIRED
           </span>
           <h1 className="text-3xl sm:text-4xl font-['Dancing_Script'] text-[#800000] font-bold tracking-tight">
-            Gembok Rahasia Cinta
+            Terkunci
           </h1>
           <p className="mt-2 text-xs sm:text-sm uppercase tracking-widest text-[#141414]/70 font-sans font-medium leading-relaxed">
             Masukkan kunci rahasia untuk membuka seluruh scrapbook ini:
@@ -148,7 +148,7 @@ export const GateLockScreen: React.FC<GateLockScreenProps> = ({ onUnlock }) => {
                   if (errorMsg) setErrorMsg('');
                 }}
                 disabled={isUnlocking}
-                placeholder="Contoh: 31-01-2026 atau 31 January 2026"
+                placeholder="Contoh: 14-02-2025 atau 14 Februari 2025"
                 className="w-full px-5 py-3 sm:py-3.5 rounded-full border-2 border-[#800000]/25 focus:border-[#800000] focus:ring-4 focus:ring-[#FADADD]/60 outline-none text-[#141414] bg-white font-medium text-sm sm:text-base transition-all placeholder:text-stone-400 placeholder:text-xs sm:placeholder:text-sm shadow-inner"
                 autoComplete="off"
                 autoFocus
@@ -178,7 +178,7 @@ export const GateLockScreen: React.FC<GateLockScreenProps> = ({ onUnlock }) => {
             ) : (
               <>
                 <Heart className="w-4 h-4 fill-white" />
-                Buka Gembok Cinta
+                Buka Disini
               </>
             )}
           </button>
@@ -199,8 +199,8 @@ export const GateLockScreen: React.FC<GateLockScreenProps> = ({ onUnlock }) => {
           </button>
 
           {showHint && (
-            <div className="mt-2 text-xs bg-[#FADADD]/50 text-[#800000] border border-[#800000]/20 px-3 py-2 rounded-xl leading-relaxed animate-fadeIn font-medium">
-              💡 <em>Petunjuk:</em> Hari terakhir di bulan Januari 2026 (Format: <strong>31-01-2026</strong> atau ketik <strong>31 January 2026</strong>)
+            <div className="mt-2 text-xs bg-[#FADADD]/50 text-[#800000] border border-[#800000]/20 px-3.5 py-2.5 rounded-xl leading-relaxed animate-fadeIn font-medium text-center">
+              💡 <em>Petunjuk:</em> Tanggal angka ganjil dan bulan pertama di awal tahun 2026 (Format: <strong>DD-MM-YYYY</strong> atau <strong>DD NamaBulan YYYY</strong>)
             </div>
           )}
         </div>
