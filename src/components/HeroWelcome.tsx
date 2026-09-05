@@ -11,6 +11,7 @@ interface HeroWelcomeProps {
 export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onToggleMusic }) => {
   const [selectedDay, setSelectedDay] = useState<number | null>(9);
   const [dateCelebrated, setDateCelebrated] = useState(false);
+  const [photoSrc, setPhotoSrc] = useState<string>('/shareen.png');
 
   // September 2026: Day 1 starts on Tuesday (2 offset if Sunday=0)
   // Total days in September: 30
@@ -115,23 +116,31 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
             <div className="absolute -top-2 right-6 w-20 h-6 washi-tape-beige rotate-12 z-20 rounded-sm" />
 
             {/* Polaroid Body Frame */}
-            <div className="bg-white p-4 sm:p-5 pt-6 pb-6 rounded-2xl polaroid-shadow border border-stone-200/90 transition-transform duration-500 hover:rotate-0 hover:scale-[1.02] transform -rotate-2">
+            <div className="bg-white p-4 sm:p-5 pt-6 pb-6 rounded-2xl polaroid-shadow border border-stone-200/90 transition-transform duration-500 hover:rotate-0 hover:scale-[1.01] transform -rotate-2">
               
               {/* Photo Area */}
-              <div className="relative aspect-[4/4.8] overflow-hidden rounded-xl bg-stone-100 shadow-inner border border-stone-200">
-                {/* <!-- Ganti link gambar utama di sini (Kelvin bisa ganti url foto kalian berdua) --> */}
+              <div className="relative aspect-[4/4.8] overflow-hidden rounded-xl bg-stone-100 shadow-inner border border-stone-200 group/photo">
+                {/* Foto Statis Shareen - My Favorite Person */}
                 <img
-                  src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80"
-                  alt="Kelvin & Shareen Sweet Memory"
+                  src={photoSrc}
+                  alt="Shareen - My Favorite Person"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  onError={() => {
+                    // Fallback to alternative paths if needed
+                    if (photoSrc === '/shareen.png') {
+                      setPhotoSrc('/image.png');
+                    } else if (photoSrc === '/image.png') {
+                      setPhotoSrc('/shareen.jpg');
+                    }
+                  }}
+                  className="w-full h-full object-cover object-[center_28%] transition-transform duration-700 group-hover:scale-105 select-none"
                 />
 
-                {/* Subtle light overlay */}
+                {/* Subtle aesthetic overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
                 {/* Polaroid Badge Tag */}
-                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#800000] flex items-center gap-1 shadow-sm border border-[#800000]/10">
+                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#800000] flex items-center gap-1 shadow-sm border border-[#800000]/10 z-10">
                   <Heart className="w-3 h-3 fill-[#800000]" />
                   <span>My Favorite Person</span>
                 </div>
@@ -139,11 +148,11 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
 
               {/* Handwritten Polaroid Caption */}
               <div className="mt-4 text-center">
-                {/* <!-- Ganti caption foto utama di sini --> */}
+                {/* <!-- Caption foto utama --> */}
                 <p className="font-['Dancing_Script'] text-2xl sm:text-3xl text-[#800000] font-bold tracking-wide">
                   "Love of my life"
                 </p>
-                <p className="text-xs text-[#800000]/60 font-sans mt-0.5 tracking-widest uppercase font-bold">
+                <p className="text-xs text-[#800000]/70 font-sans mt-0.5 tracking-widest uppercase font-bold">
                   Kelvin & Shareen • Forever & Always
                 </p>
               </div>
