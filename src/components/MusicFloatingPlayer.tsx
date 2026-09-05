@@ -1,0 +1,58 @@
+import React from 'react';
+import { Music, Volume2, VolumeX, Disc } from 'lucide-react';
+import { triggerHaptic } from '../utils/soundAndHaptics';
+
+interface MusicFloatingPlayerProps {
+  isPlaying: boolean;
+  onToggle: () => void;
+}
+
+export const MusicFloatingPlayer: React.FC<MusicFloatingPlayerProps> = ({ isPlaying, onToggle }) => {
+  const handleClick = () => {
+    triggerHaptic('light');
+    onToggle();
+  };
+
+  return (
+    <div className="fixed bottom-5 right-5 z-40">
+      <button
+        id="floating-music-toggle-btn"
+        type="button"
+        onClick={handleClick}
+        className={`group flex items-center gap-2.5 px-4 py-2.5 rounded-full shadow-xl transition-all duration-300 cursor-pointer ${
+          isPlaying
+            ? 'bg-[#800000] text-white ring-4 ring-[#FADADD] scale-105'
+            : 'bg-[#FDFBF7] text-[#141414] hover:text-[#800000] border border-[#800000]/20 hover:border-[#800000]'
+        }`}
+        title={isPlaying ? 'Matikan musik' : 'Putar nada romantis'}
+      >
+        {/* Animated Vinyl Disc Icon */}
+        <div className="relative">
+          <Disc
+            className={`w-5 h-5 ${
+              isPlaying ? 'animate-spin text-[#FADADD]' : 'text-[#800000]'
+            }`}
+            style={{ animationDuration: '4s' }}
+          />
+        </div>
+
+        {/* Text & Sound Waves */}
+        <div className="flex items-center gap-1.5">
+          <span className="text-xs font-bold uppercase tracking-wider">
+            {isPlaying ? 'Lullaby of Love' : 'BGM Cinta'}
+          </span>
+
+          {isPlaying ? (
+            <div className="flex items-end gap-0.5 h-3.5">
+              <span className="w-1 bg-[#FADADD] rounded-full animate-[bounce_0.8s_infinite]" />
+              <span className="w-1 bg-[#FADADD] rounded-full animate-[bounce_1.1s_infinite]" style={{ animationDelay: '0.2s' }} />
+              <span className="w-1 bg-[#FADADD] rounded-full animate-[bounce_0.9s_infinite]" style={{ animationDelay: '0.4s' }} />
+            </div>
+          ) : (
+            <VolumeX className="w-3.5 h-3.5 text-stone-400" />
+          )}
+        </div>
+      </button>
+    </div>
+  );
+};

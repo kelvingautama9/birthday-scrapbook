@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-handwriting: 'Caveat', cursive;
+  --font-script: 'Dancing Script', cursive;
+  
+  --color-romantic-blush: #FADADD;
+  --color-romantic-rose: #F4A6B2;
+  --color-romantic-crimson: #A30000;
+  --color-romantic-maroon: #800000;
+  --color-romantic-darkmaroon: #540000;
+  --color-romantic-beige: #F5EBE1;
+  --color-romantic-cream: #FDFBF7;
+  --color-romantic-paper: #FAF8F3;
+  --color-romantic-charcoal: #141414;
+}
+
+/* Scrapbook and tactile paper textures */
+.paper-texture {
+  background-color: #FAF8F3;
+  background-image: radial-gradient(#E5DFD6 0.75px, transparent 0.75px);
+  background-size: 16px 16px;
+}
+
+.notebook-lines {
+  background-color: #FDFBF7;
+  background-image: linear-gradient(0deg, transparent 95%, rgba(128, 0, 0, 0.08) 95%);
+  background-size: 100% 28px;
+}
+
+/* Washi Tape styling with design palette */
+.washi-tape-pink {
+  background: rgba(250, 218, 221, 0.85);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(1px);
+}
+
+.washi-tape-beige {
+  background: rgba(245, 235, 225, 0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(1px);
+}
+
+.washi-tape-maroon {
+  background: rgba(128, 0, 0, 0.75);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(1px);
+}
+
+/* Polaroid drop shadow */
+.polaroid-shadow {
+  box-shadow: 0 10px 30px -5px rgba(20, 20, 20, 0.08), 0 8px 12px -6px rgba(128, 0, 0, 0.05);
+}
+
+.polaroid-shadow-hover {
+  box-shadow: 0 20px 35px -5px rgba(128, 0, 0, 0.16), 0 12px 18px -6px rgba(128, 0, 0, 0.1);
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F2EA;
+}
+::-webkit-scrollbar-thumb {
+  background: #FDA4AF;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #BE123C;
+}
+
+/* Heart pulse keyframes */
+@keyframes softPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 2s ease-in-out infinite;
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 3s ease-in-out infinite;
+}
+

@@ -1,0 +1,6 @@
+{
+  "name": "Romantic Scrapbook & Surprise",
+  "description": "Scrapbook romantis interaktif untuk Shareen dengan gembok kejutan, kalender ulang tahun 9 September, galeri polaroid, surat cinta rahasia, dan permainan seru.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
