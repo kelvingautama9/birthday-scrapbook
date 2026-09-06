@@ -9,14 +9,14 @@ export const BirthdayWishesCapsule: React.FC = () => {
     {
       id: 'w1',
       author: 'Kelvin (Your Beloved) ❤️',
-      message: 'Semoga di ulang tahunmu ini, Shareen selalu diberikan kesehatan, senyum yang tak pernah pudar, dan bahagia yang melimpah. Aku akan selalu ada di sampingmu!',
+      message: 'Semoga di ulang tahunmu ini, kamu selalu diberikan kesehatan, senyum yang gak pernah pudar, dan bahagia yang melimpah. Aku akan selalu ada di samping kamu buat support kamu di keadaan apapun',
       date: '9 September 2026',
       avatar: '👑',
     },
     {
       id: 'w2',
       author: 'Kelvin',
-      message: 'Terima kasih sudah lahir ke dunia dan memilih untuk ada di sampingku. Kamu adalah kado terindah dalam hidupku.',
+      message: 'Terima kasih sudah lahir ke dunia dan memilih buat ada di sampingku & jadi pasangan aku. I\'m happy to have you',
       date: '9 September 2026',
       avatar: '✨',
     },
@@ -25,7 +25,7 @@ export const BirthdayWishesCapsule: React.FC = () => {
   const [wishes, setWishes] = useState<WishNote[]>(() => {
     if (typeof window !== 'undefined') {
       try {
-        const saved = localStorage.getItem('romantic_scrapbook_wishes');
+        const saved = localStorage.getItem('romantic_scrapbook_wishes_v2');
         if (saved) return JSON.parse(saved);
       } catch {
         // ignore
@@ -55,7 +55,7 @@ export const BirthdayWishesCapsule: React.FC = () => {
     const updated = [newWish, ...wishes];
     setWishes(updated);
     try {
-      localStorage.setItem('romantic_scrapbook_wishes', JSON.stringify(updated));
+      localStorage.setItem('romantic_scrapbook_wishes_v2', JSON.stringify(updated));
     } catch {
       // ignore
     }
@@ -84,10 +84,10 @@ export const BirthdayWishesCapsule: React.FC = () => {
           <span>Birthday Wish Capsule</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-['Dancing_Script'] font-bold text-[#800000] tracking-tight">
-          Papan Harapan & Doa Ulang Tahun
+          Note Wish & Doa buat kamu
         </h2>
         <p className="mt-3 text-xs sm:text-sm uppercase tracking-widest font-bold text-[#141414]/70 font-sans">
-          Tuliskan doa dan impian terbesarmu di hari ulang tahun ini agar tersimpan di scrapbook kita selamanya.
+          Tulis doa dan impian terbesarmu di hari ulang tahun kamu ini, terus screenshot & kasih tau ke aku ya
         </p>
       </div>
 

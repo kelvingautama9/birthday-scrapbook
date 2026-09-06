@@ -39,7 +39,7 @@ export const MusicFloatingPlayer: React.FC<MusicFloatingPlayerProps> = ({ isPlay
         {/* Text & Sound Waves */}
         <div className="flex items-center gap-1.5">
           <span className="text-xs font-bold uppercase tracking-wider">
-            {isPlaying ? 'Lullaby of Love' : 'BGM Cinta'}
+            {isPlaying ? 'Song' : 'Song'}
           </span>
 
           {isPlaying ? (

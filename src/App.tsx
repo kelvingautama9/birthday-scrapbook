@@ -148,7 +148,7 @@ export default function App() {
               </h4>
 
               <p className="text-sm sm:text-base text-stone-700 font-sans max-w-lg mx-auto leading-relaxed">
-                Terima kasih telah menjadi bagian paling indah dalam hidupku. Web scrapbook ini dipersembahkan sepenuh hati dari Kelvin untuk Shareen.
+                Terima kasih telah menjadi bagian paling indah di hidupku. Semoga kita bakal tetep terus langgep sampai hari tua ya sayang ❤️😊
               </p>
 
               <div className="pt-4 border-t border-[#800000]/10 flex flex-col sm:flex-row justify-between items-center text-[10px] uppercase tracking-widest font-bold text-[#800000]/60 gap-2">
