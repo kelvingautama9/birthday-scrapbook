@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, Lock, Unlock, Sparkles, HelpCircle, Key } from 'lucide-react';
-import confetti from 'canvas-confetti';
 import { triggerHaptic, playUnlockChime, playErrorBuzz } from '../utils/soundAndHaptics';
+import { triggerBirthdayCelebrationConfetti } from '../utils/confettiCelebration';
 
 interface GateLockScreenProps {
   onUnlock: () => void;
@@ -46,17 +46,8 @@ export const GateLockScreen: React.FC<GateLockScreenProps> = ({ onUnlock }) => {
       triggerHaptic('success');
       playUnlockChime();
 
-      // Efek pesta confetti hati
-      try {
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#FDA4AF', '#F43F5E', '#BE123C', '#FDE047', '#FB7185'],
-        });
-      } catch {
-        // Confetti fallback
-      }
+      // Ledakan animasi pesta confetti meriah untuk ulang tahun Shareen ke-24
+      triggerBirthdayCelebrationConfetti();
 
       // Berikan jeda animasi gembok terbuka sebelum membuka web
       setTimeout(() => {
@@ -172,8 +163,8 @@ export const GateLockScreen: React.FC<GateLockScreenProps> = ({ onUnlock }) => {
           >
             {isUnlocking ? (
               <>
-                <Sparkles className="w-5 h-5 animate-spin" />
-                Membuka Gerbang Scrapbook... ❤️
+                <Sparkles className="w-5 h-5 animate-spin text-amber-300" />
+                <span>🎉 Happy 24th Birthday Shareen! ✨</span>
               </>
             ) : (
               <>

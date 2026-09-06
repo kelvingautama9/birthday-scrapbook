@@ -195,14 +195,29 @@ export function playCelebrationSound() {
   });
 }
 
-// 7. Ambient Romantic Music Box Synthesizer (Lo-Fi Music Box)
+// 7. Ambient Romantic Music Player (Sequenced Playlist: Perfect -> You Belong With Me -> Love Story -> Looping)
+export interface SongTrack {
+  title: string;
+  src: string;
+}
+
+export const PLAYLIST: SongTrack[] = [
+  { title: 'Perfect', src: '/perfect.mp3' },
+  { title: 'You Belong With Me', src: '/youbelongwithme.mp3' },
+  { title: 'Love Story', src: '/lovestory.mp3' },
+];
+
 class MusicBoxPlayer {
   private isPlaying: boolean = false;
+  private audioElement: HTMLAudioElement | null = null;
+  private customAudioActive: boolean = false;
+  private currentTrackIndex: number = 0;
+  private listeners: Array<(track: SongTrack) => void> = [];
   private timerId: number | null = null;
   private currentStep: number = 0;
   private masterGain: GainNode | null = null;
 
-  // Romantic melody progression (Pentatonic lullaby in C Major / A Minor)
+  // Romantic melody progression fallback (Pentatonic lullaby in C Major / A Minor)
   private melody = [
     523.25, 659.25, 783.99, 659.25, 880.0, 783.99, 659.25, 523.25,
     587.33, 659.25, 783.99, 880.0, 1046.5, 880.0, 783.99, 659.25,
@@ -224,11 +239,89 @@ class MusicBoxPlayer {
     return this.isPlaying;
   }
 
+  public getCurrentTrack(): SongTrack {
+    return PLAYLIST[this.currentTrackIndex];
+  }
+
+  public onTrackChange(listener: (track: SongTrack) => void) {
+    this.listeners.push(listener);
+    return () => {
+      this.listeners = this.listeners.filter((l) => l !== listener);
+    };
+  }
+
+  private notifyTrackChange() {
+    const current = this.getCurrentTrack();
+    this.listeners.forEach((fn) => fn(current));
+  }
+
   public start() {
+    this.isPlaying = true;
+
+    // Putar playlist berurutan (Perfect -> You Belong With Me -> Love Story)
+    this.playTrackAtIndex(this.currentTrackIndex, 0);
+  }
+
+  private playTrackAtIndex(index: number, attemptsCount: number) {
+    if (!this.isPlaying) return;
+    if (typeof window === 'undefined') return;
+
+    // Jika seluruh file playlist belum ada di server, fallback ke synthesizer nada romantis
+    if (attemptsCount >= PLAYLIST.length) {
+      this.customAudioActive = false;
+      this.startSynth();
+      return;
+    }
+
+    this.currentTrackIndex = index % PLAYLIST.length;
+    const targetTrack = PLAYLIST[this.currentTrackIndex];
+    this.notifyTrackChange();
+
+    if (!this.audioElement) {
+      this.audioElement = new Audio();
+      this.audioElement.volume = 0.65;
+    }
+
+    const audio = this.audioElement;
+    // Set loop = false agar event 'ended' terpicu saat lagu selesai
+    audio.loop = false;
+    audio.src = targetTrack.src;
+
+    // Ketika lagu selesai, lanjut otomatis ke lagu berikutnya dalam playlist
+    audio.onended = () => {
+      if (!this.isPlaying) return;
+      // Berpindah ke lagu berikutnya: index 0 -> 1 -> 2 -> kembali ke 0 (looping)
+      const nextIndex = (this.currentTrackIndex + 1) % PLAYLIST.length;
+      this.playTrackAtIndex(nextIndex, 0);
+    };
+
+    // Penanganan error (misal file belum diupload di folder public)
+    audio.onerror = () => {
+      // Coba lagu berikutnya di playlist
+      const nextIndex = (this.currentTrackIndex + 1) % PLAYLIST.length;
+      this.playTrackAtIndex(nextIndex, attemptsCount + 1);
+    };
+
+    audio
+      .play()
+      .then(() => {
+        this.customAudioActive = true;
+        // Matikan synth jika custom audio berhasil jalan
+        this.stopSynth();
+      })
+      .catch(() => {
+        // Coba track berikutnya jika gagal play
+        const nextIndex = (this.currentTrackIndex + 1) % PLAYLIST.length;
+        this.playTrackAtIndex(nextIndex, attemptsCount + 1);
+      });
+  }
+
+  private startSynth() {
+    if (!this.isPlaying || this.customAudioActive) return;
+
     const ctx = getAudioContext();
     if (!ctx) return;
 
-    this.isPlaying = true;
     this.masterGain = ctx.createGain();
     this.masterGain.gain.setValueAtTime(0.08, ctx.currentTime);
     this.masterGain.connect(ctx.destination);
@@ -236,7 +329,7 @@ class MusicBoxPlayer {
     const stepDuration = 380; // ms per note
 
     const playNext = () => {
-      if (!this.isPlaying || !ctx || !this.masterGain) return;
+      if (!this.isPlaying || this.customAudioActive || !ctx || !this.masterGain) return;
 
       const freq = this.melody[this.currentStep % this.melody.length];
       this.currentStep++;
@@ -262,8 +355,7 @@ class MusicBoxPlayer {
     playNext();
   }
 
-  public stop() {
-    this.isPlaying = false;
+  private stopSynth() {
     if (this.timerId) {
       clearTimeout(this.timerId);
       this.timerId = null;
@@ -273,9 +365,25 @@ class MusicBoxPlayer {
         this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, audioCtx.currentTime);
         this.masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.2);
       } catch {
-        // cleanup ignore
+        // ignore
       }
     }
+  }
+
+  public stop() {
+    this.isPlaying = false;
+
+    // Hentikan pemutaran audio
+    if (this.audioElement) {
+      try {
+        this.audioElement.pause();
+      } catch {
+        // ignore
+      }
+    }
+
+    // Hentikan synthesizer nada
+    this.stopSynth();
   }
 }
 

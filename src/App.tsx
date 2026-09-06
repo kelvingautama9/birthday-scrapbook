@@ -17,6 +17,7 @@ import { LoveCouponsSection } from './components/LoveCouponsSection';
 import { BirthdayWishesCapsule } from './components/BirthdayWishesCapsule';
 import { MusicFloatingPlayer } from './components/MusicFloatingPlayer';
 import { romanticMusicBox, triggerHaptic } from './utils/soundAndHaptics';
+import { triggerBirthdayCelebrationConfetti } from './utils/confettiCelebration';
 
 export default function App() {
   // Gating status: starts as locked (false)
@@ -31,6 +32,11 @@ export default function App() {
 
   const handleUnlock = () => {
     setIsUnlocked(true);
+    // Efek sambutan confetti meriah saat scrapbook terbuka penuh
+    setTimeout(() => {
+      triggerBirthdayCelebrationConfetti();
+    }, 200);
+
     // Auto-start soft romantic music box melody upon unlocking
     if (!isMusicPlaying) {
       romanticMusicBox.start();
