@@ -30,6 +30,7 @@ export interface LoveCoupon {
   terms: string;
   code: string;
   isRedeemed: boolean;
+  usageLimit?: '1x' | 'unlimited';
 }
 
 export interface WishNote {
