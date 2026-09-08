@@ -283,9 +283,13 @@ class MusicBoxPlayer {
     }
 
     const audio = this.audioElement;
-    // Set loop = false agar event 'ended' terpicu saat lagu selesai
     audio.loop = false;
-    audio.src = targetTrack.src;
+
+    // Hanya update audio.src jika berganti track atau belum terisi
+    const isSameTrack = audio.src.endsWith(targetTrack.src);
+    if (!isSameTrack) {
+      audio.src = targetTrack.src;
+    }
 
     // Ketika lagu selesai, lanjut otomatis ke lagu berikutnya dalam playlist
     audio.onended = () => {
@@ -368,6 +372,22 @@ class MusicBoxPlayer {
         // ignore
       }
     }
+  }
+
+  public nextTrack() {
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+    }
+    const nextIndex = (this.currentTrackIndex + 1) % PLAYLIST.length;
+    this.playTrackAtIndex(nextIndex, 0);
+  }
+
+  public prevTrack() {
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+    }
+    const prevIndex = (this.currentTrackIndex - 1 + PLAYLIST.length) % PLAYLIST.length;
+    this.playTrackAtIndex(prevIndex, 0);
   }
 
   public stop() {

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Heart, Sparkles, Lock, Star, Music, Cake } from 'lucide-react';
 import { FloatingHearts } from './components/FloatingHearts';
 import { GateLockScreen } from './components/GateLockScreen';
@@ -16,13 +16,20 @@ import { PlayfulPrankSection } from './components/PlayfulPrankSection';
 import { LoveCouponsSection } from './components/LoveCouponsSection';
 import { BirthdayWishesCapsule } from './components/BirthdayWishesCapsule';
 import { MusicFloatingPlayer } from './components/MusicFloatingPlayer';
-import { romanticMusicBox, triggerHaptic } from './utils/soundAndHaptics';
+import { romanticMusicBox, triggerHaptic, SongTrack } from './utils/soundAndHaptics';
 import { triggerBirthdayCelebrationConfetti } from './utils/confettiCelebration';
 
 export default function App() {
   // Gating status: starts as locked (false)
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState<SongTrack>(() => romanticMusicBox.getCurrentTrack());
+
+  useEffect(() => {
+    return romanticMusicBox.onTrackChange((track) => {
+      setCurrentTrack(track);
+    });
+  }, []);
 
   // Toggle BGM player
   const handleToggleMusic = () => {
@@ -67,6 +74,8 @@ export default function App() {
         <MusicFloatingPlayer
           isPlaying={isMusicPlaying}
           onToggle={handleToggleMusic}
+          currentTrackTitle={currentTrack.title}
+          onNextTrack={() => romanticMusicBox.nextTrack()}
         />
       )}
 

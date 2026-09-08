@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, Sparkles, Cake, Calendar as CalendarIcon, Volume2, VolumeX, Music, Utensils } from 'lucide-react';
+import { Heart, Sparkles, Cake, Calendar as CalendarIcon, Volume2, VolumeX, Music, Utensils, ChefHat } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { triggerHaptic, playUnlockChime, romanticMusicBox } from '../utils/soundAndHaptics';
 
@@ -46,6 +46,19 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
           spread: 80,
           origin: { y: 0.5 },
           colors: ['#800000', '#FADADD', '#D4AF37', '#FFD700'],
+        });
+      } catch {
+        // Confetti fallback
+      }
+    } else if (day === 20) {
+      triggerHaptic('success');
+      playUnlockChime();
+      try {
+        confetti({
+          particleCount: 60,
+          spread: 80,
+          origin: { y: 0.5 },
+          colors: ['#FADADD', '#800000', '#FFD700', '#FBBF24'],
         });
       } catch {
         // Confetti fallback
@@ -216,6 +229,13 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                   <Utensils className="w-3.5 h-3.5 text-[#FADADD]" />
                   <span>13 Sep: JW Marriott 🍷</span>
                 </div>
+                <div 
+                  onClick={() => handleDateClick(20)}
+                  className="px-3 py-1.5 bg-[#800000] hover:bg-[#660000] text-white rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 shadow-xs cursor-pointer transition-transform hover:scale-105"
+                >
+                  <ChefHat className="w-3.5 h-3.5 text-[#FADADD]" />
+                  <span>20 Sep: Baking Date 🧁</span>
+                </div>
               </div>
             </div>
 
@@ -245,6 +265,7 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                 const dayNum = i + 1;
                 const isShareenBirthday = dayNum === 9;
                 const isDinnerDate = dayNum === 13;
+                const isBakingDate = dayNum === 20;
                 const isSelected = selectedDay === dayNum;
 
                 // Hitung animasi melayang unik untuk setiap angka kalender
@@ -272,12 +293,14 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                           ? 'bg-[#800000] text-white shadow-lg shadow-[#800000]/30 scale-110 ring-4 ring-[#FADADD] z-10'
                           : isDinnerDate
                           ? 'bg-[#800000] text-white shadow-md shadow-[#800000]/30 scale-105 ring-3 ring-[#FADADD] z-10'
+                          : isBakingDate
+                          ? 'bg-[#800000] text-white shadow-md shadow-[#800000]/30 scale-105 ring-3 ring-[#FADADD] z-10'
                           : isSelected
                           ? 'bg-[#FADADD] text-[#800000] font-bold'
                           : 'bg-white hover:bg-[#FADADD]/40 text-stone-800 hover:text-[#800000] border border-stone-200/80 shadow-2xs'
                       }`}
                     >
-                      {/* Tanggal 9: Ditandai hati | Tanggal 13: Dinner JW Marriott */}
+                      {/* Tanggal 9: Ditandai hati | Tanggal 13: Dinner JW Marriott | Tanggal 20: Baking Date */}
                       {isShareenBirthday ? (
                         <>
                           <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-white drop-shadow-xs animate-bounce" />
@@ -292,13 +315,20 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                             13
                           </span>
                         </>
+                      ) : isBakingDate ? (
+                        <>
+                          <ChefHat className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FADADD] drop-shadow-xs animate-pulse" />
+                          <span className="text-[11px] sm:text-xs font-extrabold leading-none text-white">
+                            20
+                          </span>
+                        </>
                       ) : (
                         <span className="text-xs sm:text-sm">
                           {dayNum}
                         </span>
                       )}
 
-                      {/* Sparkle badge khusus pada tanggal 9 & 13 */}
+                      {/* Sparkle badge khusus pada tanggal 9, 13 & 20 */}
                       {isShareenBirthday && (
                         <span className="absolute -top-2 -right-2 text-[10px] animate-pulse">
                           ✨
@@ -307,6 +337,11 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                       {isDinnerDate && (
                         <span className="absolute -top-2 -right-2 text-[10px] animate-pulse" title="Our Dinner at JW Marriott">
                           🍷
+                        </span>
+                      )}
+                      {isBakingDate && (
+                        <span className="absolute -top-2 -right-2 text-[10px] animate-pulse" title="Baking Date : ABC Cooking Studio">
+                          🧁
                         </span>
                       )}
                     </div>
@@ -328,9 +363,13 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                     <span className="text-[#800000] font-bold flex items-center gap-1">
                       🍷 13 September 2026: Our Dinner at JW Marriott ✨
                     </span>
+                  ) : selectedDay === 20 ? (
+                    <span className="text-[#800000] font-bold flex items-center gap-1">
+                      🧁 20 September 2026: Baking Date : ABC Cooking Studio 🧑‍🍳✨
+                    </span>
                   ) : (
                     <span>
-                      Jadwal Spesial: <strong>9 Sep</strong> (Ultah Princess) & <strong>13 Sep</strong> (Our Dinner at JW Marriott) ✨
+                      Jadwal Spesial: <strong>9 Sep</strong> (Ultah Princess), <strong>13 Sep</strong> (JW Marriott), & <strong>20 Sep</strong> (Baking Date ABC Cooking Studio) ✨
                     </span>
                   )}
                 </p>
@@ -371,6 +410,26 @@ export const HeroWelcome: React.FC<HeroWelcomeProps> = ({ isMusicPlaying, onTogg
                 >
                   <Utensils className="w-3.5 h-3.5" />
                   Dinner Date! 🍷
+                </button>
+              )}
+
+              {selectedDay === 20 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    triggerHaptic('success');
+                    playUnlockChime();
+                    confetti({
+                      particleCount: 80,
+                      spread: 90,
+                      origin: { y: 0.6 },
+                      colors: ['#FADADD', '#800000', '#FFD700', '#FBBF24'],
+                    });
+                  }}
+                  className="px-4 py-1.5 rounded-full bg-[#800000] hover:bg-[#660000] text-white font-bold text-xs transition-all cursor-pointer shadow-xs active:scale-95 uppercase tracking-wider flex items-center gap-1"
+                >
+                  <ChefHat className="w-3.5 h-3.5" />
+                  Baking Date! 🧁
                 </button>
               )}
             </div>
